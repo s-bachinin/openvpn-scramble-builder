@@ -1,1 +1,20 @@
+name: Build-openvpn-scramble
+on:               # сборка запускается вручную
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4            # берёт ваш репозиторий
+      - name: Build with OpenWrt SDK
+        uses: openwrt/gh-action-sdk@v4       # готовый action от OpenWrt
+        env:
+          ARCH: aarch64_cortex-a53-21.02.7   # цель = Flint 2, ветка 21.02
+          PACKAGES: openvpn-scramble         # что компилировать
+          EXTRA_FEEDS: https://github.com/egc112/OpenWRT-egc-add-on
+      - uses: actions/upload-artifact@v4     # кладём ipk как артефакт
+        with:
+          name: ipk
+          path: bin/packages/**/openvpn-scramble*.ipk
 
