@@ -10,7 +10,7 @@ jobs:
       - name: Build with OpenWrt SDK
         uses: openwrt/gh-action-sdk@v4       # готовый action от OpenWrt
         env:
-          ARCH: mediatek-filogic-21.02.7   # цель = Flint 2, ветка 21.02
+          ARCH: aarch64_cortex-a53   # цель = Flint 2, ветка 21.02
           PACKAGES: openvpn-scramble         # что компилировать
           EXTRA_FEEDS: https://github.com/egc112/OpenWRT-egc-add-on
       - uses: actions/upload-artifact@v4     # кладём ipk как артефакт
